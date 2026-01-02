@@ -37,6 +37,8 @@ Example tape for {"name": "Alice", "age": 30}:
   [7] END_OBJECT (start=1)
 """
 
+from memory import bitcast
+
 # Type tag constants (8-bit, fits in high byte of UInt64)
 alias TAPE_ROOT: UInt8 = ord('r')
 alias TAPE_START_ARRAY: UInt8 = ord('[')
@@ -209,7 +211,7 @@ struct Tape(Movable, Sized):
         """Append DOUBLE entry (uses two entries for full value)."""
         self.entries.append(TapeEntry.create(TAPE_DOUBLE, 0))
         # Second entry contains raw bits
-        self.entries.append(TapeEntry(bitcast[DType.uint64, 1](value)))
+        self.entries.append(TapeEntry(bitcast[DType.uint64](value)))
 
     fn append_string(mut self, s: String) -> Int:
         """
@@ -317,7 +319,7 @@ struct Tape(Movable, Sized):
         """Get DOUBLE value from tape (reads next entry too)."""
         var entry = self.entries[idx]
         if entry.type_tag() == TAPE_DOUBLE and idx + 1 < len(self.entries):
-            return bitcast[DType.float64, 1](self.entries[idx + 1].raw_u64())
+            return bitcast[DType.float64](self.entries[idx + 1].raw_u64())
         return 0.0
 
     fn skip_value(self, idx: Int) -> Int:
