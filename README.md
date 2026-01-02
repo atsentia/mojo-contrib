@@ -4,7 +4,7 @@ Enterprise foundation libraries for Mojo—production-ready building blocks for 
 
 ## Why Pure Mojo?
 
-Mojo delivers C and Rust-level performance, but the ecosystem lacks the established toolkit that enterprise systems require. These 26 libraries address that gap with:
+Mojo delivers C and Rust-level performance, but the ecosystem lacks the established toolkit that enterprise systems require. These 27 libraries address that gap with:
 
 - **No interpreter overhead** — Eliminates Python runtime and cross-language marshaling costs
 - **Single binary deployment** — Simplifies containers, reduces attack surface
@@ -60,13 +60,14 @@ Circuit breakers prevent cascade failures. Retry with exponential backoff handle
 | [mojo-cache](https://github.com/atsentia/mojo-cache) | — | LRU and TTL-based caching |
 | [mojo-session](https://github.com/atsentia/mojo-session) | — | Server-side session management |
 
-### Serialization
+### Serialization & Tokenization
 
 | Library | Standards | Description |
 |---------|-----------|-------------|
 | [mojo-json](https://github.com/atsentia/mojo-json) | RFC 8259 | JSON parsing and generation |
 | [mojo-msgpack](https://github.com/atsentia/mojo-msgpack) | MessagePack | Binary serialization for performance-critical paths |
 | [mojo-base64](https://github.com/atsentia/mojo-base64) | RFC 4648 | URL-safe Base64 encoding |
+| [mojo-tokenizer](https://github.com/atsentia/mojo-tokenizer) | tiktoken, HuggingFace | BPE tokenization for LLM inference with chat templates |
 
 ### Networking
 
