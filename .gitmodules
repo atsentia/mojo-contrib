@@ -1,0 +1,78 @@
+[submodule "auth-security/mojo-auth"]
+	path = auth-security/mojo-auth
+	url = git@github.com:atsentia/mojo-auth.git
+[submodule "auth-security/mojo-crypto"]
+	path = auth-security/mojo-crypto
+	url = git@github.com:atsentia/mojo-crypto.git
+[submodule "auth-security/mojo-jwt"]
+	path = auth-security/mojo-jwt
+	url = git@github.com:atsentia/mojo-jwt.git
+[submodule "auth-security/mojo-oauth2"]
+	path = auth-security/mojo-oauth2
+	url = git@github.com:atsentia/mojo-oauth2.git
+[submodule "auth-security/mojo-validation"]
+	path = auth-security/mojo-validation
+	url = git@github.com:atsentia/mojo-validation.git
+[submodule "serialization/mojo-json"]
+	path = serialization/mojo-json
+	url = git@github.com:atsentia/mojo-json.git
+[submodule "serialization/mojo-msgpack"]
+	path = serialization/mojo-msgpack
+	url = git@github.com:atsentia/mojo-msgpack.git
+[submodule "serialization/mojo-base64"]
+	path = serialization/mojo-base64
+	url = git@github.com:atsentia/mojo-base64.git
+[submodule "networking/mojo-http"]
+	path = networking/mojo-http
+	url = git@github.com:atsentia/mojo-http.git
+[submodule "networking/mojo-server"]
+	path = networking/mojo-server
+	url = git@github.com:atsentia/mojo-server.git
+[submodule "networking/mojo-socket"]
+	path = networking/mojo-socket
+	url = git@github.com:atsentia/mojo-socket.git
+[submodule "networking/mojo-websocket"]
+	path = networking/mojo-websocket
+	url = git@github.com:atsentia/mojo-websocket.git
+[submodule "storage/mojo-cache"]
+	path = storage/mojo-cache
+	url = git@github.com:atsentia/mojo-cache.git
+[submodule "storage/mojo-redis"]
+	path = storage/mojo-redis
+	url = git@github.com:atsentia/mojo-redis.git
+[submodule "storage/mojo-sql"]
+	path = storage/mojo-sql
+	url = git@github.com:atsentia/mojo-sql.git
+[submodule "storage/mojo-session"]
+	path = storage/mojo-session
+	url = git@github.com:atsentia/mojo-session.git
+[submodule "observability/mojo-observability"]
+	path = observability/mojo-observability
+	url = git@github.com:atsentia/mojo-observability.git
+[submodule "observability/mojo-trace"]
+	path = observability/mojo-trace
+	url = git@github.com:atsentia/mojo-trace.git
+[submodule "observability/mojo-health"]
+	path = observability/mojo-health
+	url = git@github.com:atsentia/mojo-health.git
+[submodule "utilities/mojo-config"]
+	path = utilities/mojo-config
+	url = git@github.com:atsentia/mojo-config.git
+[submodule "utilities/mojo-time"]
+	path = utilities/mojo-time
+	url = git@github.com:atsentia/mojo-time.git
+[submodule "utilities/mojo-uuid"]
+	path = utilities/mojo-uuid
+	url = git@github.com:atsentia/mojo-uuid.git
+[submodule "utilities/mojo-scheduler"]
+	path = utilities/mojo-scheduler
+	url = git@github.com:atsentia/mojo-scheduler.git
+[submodule "utilities/mojo-testing"]
+	path = utilities/mojo-testing
+	url = git@github.com:atsentia/mojo-testing.git
+[submodule "utilities/mojo-resilience"]
+	path = utilities/mojo-resilience
+	url = git@github.com:atsentia/mojo-resilience.git
+[submodule "utilities/mojo-result"]
+	path = utilities/mojo-result
+	url = git@github.com:atsentia/mojo-result.git
