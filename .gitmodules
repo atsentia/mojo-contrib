@@ -76,3 +76,6 @@
 [submodule "utilities/mojo-result"]
 	path = utilities/mojo-result
 	url = git@github.com:atsentia/mojo-result.git
+[submodule "serialization/mojo-tokenizer"]
+	path = serialization/mojo-tokenizer
+	url = https://github.com/atsentia/mojo-tokenizer.git
