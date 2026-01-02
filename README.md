@@ -1,119 +1,108 @@
 # mojo-contrib
 
-Pure Mojo enterprise libraries collection - 26 libraries, 34,000+ LOC.
+Enterprise foundation libraries for Mojo—production-ready building blocks for mission-critical systems.
 
-## Quick Start
+## Why Pure Mojo?
+
+Mojo delivers C and Rust-level performance, but the ecosystem lacks the established toolkit that enterprise systems require. These 26 libraries address that gap with:
+
+- **No interpreter overhead** — Eliminates Python runtime and cross-language marshaling costs
+- **Single binary deployment** — Simplifies containers, reduces attack surface
+- **Compile-time safety** — Catches errors before production
+- **Resource efficiency** — Every CPU cycle saved is energy not consumed, reducing cloud costs and environmental impact
+
+## Getting Started
 
 ```bash
 # Clone with all submodules
 git clone --recursive git@github.com:atsentia/mojo-contrib.git
 
-# Or clone then init submodules
+# Or initialize submodules after cloning
 git clone git@github.com:atsentia/mojo-contrib.git
 cd mojo-contrib
 git submodule update --init --recursive
-
-# Update all submodules to latest
-git submodule update --remote --merge
-```
-
-## Structure
-
-```
-mojo-contrib/
-├── auth-security/       # Authentication & Security
-│   ├── mojo-auth/       #   JWT validation and RBAC
-│   ├── mojo-crypto/     #   SHA-256/512, HMAC, PBKDF2
-│   ├── mojo-jwt/        #   JWT tokens with HS256
-│   ├── mojo-oauth2/     #   OAuth 2.0 with PKCE
-│   └── mojo-validation/ #   Schema validation
-├── serialization/       # Data Serialization
-│   ├── mojo-json/       #   RFC 8259 JSON parser
-│   ├── mojo-msgpack/    #   MessagePack serialization
-│   └── mojo-base64/     #   URL-safe Base64 encoding
-├── networking/          # Networking & HTTP
-│   ├── mojo-http/       #   HTTP server/client
-│   ├── mojo-server/     #   Pure Mojo HTTP/1.1 server
-│   ├── mojo-socket/     #   TCP sockets via C FFI
-│   └── mojo-websocket/  #   RFC 6455 WebSocket
-├── storage/             # Data Storage & Caching
-│   ├── mojo-cache/      #   LRU/TTL cache
-│   ├── mojo-redis/      #   RESP protocol Redis client
-│   ├── mojo-sql/        #   SQL query builder with pooling
-│   └── mojo-session/    #   Session management
-├── observability/       # Observability & Monitoring
-│   ├── mojo-observability/ # Logging and metrics
-│   ├── mojo-trace/      #   OTLP distributed tracing
-│   └── mojo-health/     #   Health probes
-└── utilities/           # Utilities & Tools
-    ├── mojo-config/     #   TOML config and env vars
-    ├── mojo-time/       #   DateTime operations
-    ├── mojo-uuid/       #   UUID v4/v7 generation
-    ├── mojo-scheduler/  #   Task scheduler with cron
-    ├── mojo-testing/    #   Testing framework with mocks
-    ├── mojo-resilience/ #   Circuit breaker, retry, rate limiting
-    └── mojo-result/     #   Generic Result[T,E] error handling
 ```
 
 ## Libraries
 
-### Authentication & Security
+### Identity & Security
 
-| Library | LOC | Tests | Description |
-|---------|-----|-------|-------------|
-| [mojo-auth](https://github.com/atsentia/mojo-auth) | 578 | 8 | JWT validation and RBAC |
-| [mojo-crypto](https://github.com/atsentia/mojo-crypto) | 1,281 | 9 | SHA-256/512, HMAC, PBKDF2 |
-| [mojo-jwt](https://github.com/atsentia/mojo-jwt) | 2,215 | 11 | JWT tokens with HS256 |
-| [mojo-oauth2](https://github.com/atsentia/mojo-oauth2) | 1,184 | 15 | OAuth 2.0 with PKCE |
-| [mojo-validation](https://github.com/atsentia/mojo-validation) | 959 | 17 | Schema validation |
+| Library | Standards | Description |
+|---------|-----------|-------------|
+| [mojo-jwt](https://github.com/atsentia/mojo-jwt) | RFC 7519 | JWT creation and validation with timing-attack protections |
+| [mojo-oauth2](https://github.com/atsentia/mojo-oauth2) | RFC 6749 | OAuth 2.0 with PKCE, pre-configured providers (Google, GitHub, Microsoft, Okta) |
+| [mojo-auth](https://github.com/atsentia/mojo-auth) | — | Role-based access control (RBAC) |
+| [mojo-crypto](https://github.com/atsentia/mojo-crypto) | FIPS 180-4 | SHA-256/512, HMAC, PBKDF2 |
+| [mojo-validation](https://github.com/atsentia/mojo-validation) | — | Schema validation for untrusted input |
 
-### Data Serialization
+### Resilience Patterns
 
-| Library | LOC | Tests | Description |
-|---------|-----|-------|-------------|
-| [mojo-json](https://github.com/atsentia/mojo-json) | 1,839 | 27 | RFC 8259 JSON parser |
-| [mojo-msgpack](https://github.com/atsentia/mojo-msgpack) | 1,468 | 32 | MessagePack serialization |
-| [mojo-base64](https://github.com/atsentia/mojo-base64) | 369 | 11 | URL-safe Base64 encoding |
+| Library | Patterns | Description |
+|---------|----------|-------------|
+| [mojo-resilience](https://github.com/atsentia/mojo-resilience) | Circuit breaker, retry, bulkhead | Fault tolerance for distributed systems |
 
-### Networking & HTTP
+Circuit breakers prevent cascade failures. Retry with exponential backoff handles transient errors. Rate limiting protects downstream services. Bulkhead isolation contains failures.
 
-| Library | LOC | Tests | Description |
-|---------|-----|-------|-------------|
-| [mojo-http](https://github.com/atsentia/mojo-http) | 1,337 | 18 | HTTP server/client |
-| [mojo-server](https://github.com/atsentia/mojo-server) | 1,176 | 11 | Pure Mojo HTTP/1.1 server |
-| [mojo-socket](https://github.com/atsentia/mojo-socket) | 853 | 12 | TCP sockets via C FFI |
-| [mojo-websocket](https://github.com/atsentia/mojo-websocket) | 2,520 | 27 | RFC 6455 WebSocket |
+### Observability
 
-### Data Storage & Caching
+| Library | Standards | Description |
+|---------|-----------|-------------|
+| [mojo-trace](https://github.com/atsentia/mojo-trace) | W3C Trace Context, OTLP | Distributed tracing with Jaeger/Tempo integration |
+| [mojo-observability](https://github.com/atsentia/mojo-observability) | — | Structured logging and metrics |
+| [mojo-health](https://github.com/atsentia/mojo-health) | Kubernetes probes | Liveness, readiness, and startup health checks |
 
-| Library | LOC | Tests | Description |
-|---------|-----|-------|-------------|
-| [mojo-cache](https://github.com/atsentia/mojo-cache) | 389 | 11 | LRU/TTL cache |
-| [mojo-redis](https://github.com/atsentia/mojo-redis) | 2,166 | 21 | RESP protocol Redis client |
-| [mojo-sql](https://github.com/atsentia/mojo-sql) | 2,232 | 35 | SQL query builder with pooling |
-| [mojo-session](https://github.com/atsentia/mojo-session) | 388 | 13 | Session management |
+### Data Infrastructure
 
-### Observability & Monitoring
+| Library | Standards | Description |
+|---------|-----------|-------------|
+| [mojo-redis](https://github.com/atsentia/mojo-redis) | RESP | Redis client for caching, pub/sub, and data structures |
+| [mojo-sql](https://github.com/atsentia/mojo-sql) | — | Type-safe SQL query builder with connection pooling |
+| [mojo-cache](https://github.com/atsentia/mojo-cache) | — | LRU and TTL-based caching |
+| [mojo-session](https://github.com/atsentia/mojo-session) | — | Server-side session management |
 
-| Library | LOC | Tests | Description |
-|---------|-----|-------|-------------|
-| [mojo-observability](https://github.com/atsentia/mojo-observability) | 1,270 | 5 | Logging and metrics |
-| [mojo-trace](https://github.com/atsentia/mojo-trace) | 2,599 | 8 | OTLP distributed tracing |
-| [mojo-health](https://github.com/atsentia/mojo-health) | 856 | 9 | Health probes |
+### Serialization
 
-### Utilities & Tools
+| Library | Standards | Description |
+|---------|-----------|-------------|
+| [mojo-json](https://github.com/atsentia/mojo-json) | RFC 8259 | JSON parsing and generation |
+| [mojo-msgpack](https://github.com/atsentia/mojo-msgpack) | MessagePack | Binary serialization for performance-critical paths |
+| [mojo-base64](https://github.com/atsentia/mojo-base64) | RFC 4648 | URL-safe Base64 encoding |
 
-| Library | LOC | Tests | Description |
-|---------|-----|-------|-------------|
-| [mojo-config](https://github.com/atsentia/mojo-config) | 616 | 7 | TOML config and env vars |
-| [mojo-time](https://github.com/atsentia/mojo-time) | 1,868 | 34 | DateTime operations |
-| [mojo-uuid](https://github.com/atsentia/mojo-uuid) | 324 | 8 | UUID v4/v7 generation |
-| [mojo-scheduler](https://github.com/atsentia/mojo-scheduler) | 1,528 | 31 | Task scheduler with cron |
-| [mojo-testing](https://github.com/atsentia/mojo-testing) | 754 | 15 | Testing framework with mocks |
-| [mojo-resilience](https://github.com/atsentia/mojo-resilience) | 1,289 | 14 | Circuit breaker, retry, rate limiting |
-| [mojo-result](https://github.com/atsentia/mojo-result) | ~200 | 12 | Generic Result[T,E] error handling |
+### Networking
 
-**Total: 34,000+ LOC | 414 tests**
+| Library | Standards | Description |
+|---------|-----------|-------------|
+| [mojo-http](https://github.com/atsentia/mojo-http) | HTTP/1.1 | HTTP client and server |
+| [mojo-server](https://github.com/atsentia/mojo-server) | HTTP/1.1 | Lightweight HTTP server |
+| [mojo-websocket](https://github.com/atsentia/mojo-websocket) | RFC 6455 | WebSocket client and server |
+| [mojo-socket](https://github.com/atsentia/mojo-socket) | — | TCP sockets via C FFI |
+
+### Utilities
+
+| Library | Description |
+|---------|-------------|
+| [mojo-config](https://github.com/atsentia/mojo-config) | TOML configuration and environment variables |
+| [mojo-time](https://github.com/atsentia/mojo-time) | DateTime parsing, formatting, and arithmetic |
+| [mojo-uuid](https://github.com/atsentia/mojo-uuid) | UUID v4 (random) and v7 (time-ordered) generation |
+| [mojo-scheduler](https://github.com/atsentia/mojo-scheduler) | Task scheduling with cron expressions |
+| [mojo-testing](https://github.com/atsentia/mojo-testing) | Testing framework with mocks and assertions |
+| [mojo-result](https://github.com/atsentia/mojo-result) | Generic `Result[T, E]` for explicit error handling |
+
+## Standards Compliance
+
+All implementations follow established specifications—RFC 7519, RFC 8259, RFC 6455, W3C Trace Context—ensuring interoperability with existing enterprise infrastructure rather than creating isolated solutions.
+
+## Project Structure
+
+```
+mojo-contrib/
+├── auth-security/       # Identity & security libraries
+├── serialization/       # JSON, MessagePack, Base64
+├── networking/          # HTTP, WebSocket, sockets
+├── storage/             # Redis, SQL, caching, sessions
+├── observability/       # Tracing, logging, health checks
+└── utilities/           # Config, time, UUID, scheduling, testing
+```
 
 ## License
 
