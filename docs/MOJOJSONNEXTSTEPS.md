@@ -250,12 +250,26 @@ fn parse_mmap(path: String) raises -> LazyJsonValue:
 
 ## Performance Targets
 
-| Phase | Target | Technique |
-|-------|--------|-----------|
-| Current | 450 MB/s | Tape parser + lazy access |
-| Phase 1 | 600 MB/s | SIMD key matching, lazy iteration |
-| Phase 2 | 2,000 MB/s | GPU structural scanning |
-| Phase 3 | 3,000+ MB/s | Parallel tape + on-demand unescape |
+| Phase | Target | Status | Technique |
+|-------|--------|--------|-----------|
+| Current | 450 MB/s | ✅ Achieved | Tape parser + lazy access |
+| Phase 1 | 600 MB/s | ✅ **636 MB/s** | SIMD key matching, compile-time constants |
+| Phase 2 | 2,000 MB/s | 🚧 In Progress | Number position indexing, value pre-classification |
+| Phase 3 | 3,000+ MB/s | ⏳ Planned | Parallel tape + on-demand unescape |
+
+### Key Insight from Phase 2 Analysis
+
+**Stage 1 (structural scan) is NOT the bottleneck** - it runs at 1,200 MB/s.
+**Stage 2 (tape building) IS the bottleneck** - runs at ~600 MB/s.
+
+The slow path is number parsing. Numbers aren't structural characters, so they require:
+1. Re-scanning source after every `:` or `,`
+2. Character-by-character boundary detection
+3. Separate parsing (int vs float classification)
+
+**Solution for 2,000 MB/s:** Extend structural index to also track:
+- Number start/end positions
+- Value type hints (string/number/literal)
 
 ### Comparison with Other Libraries
 
@@ -264,8 +278,8 @@ fn parse_mmap(path: String) raises -> LazyJsonValue:
 | simdjson | C++ | 2,500-5,000 MB/s | Best-in-class |
 | orjson | Rust | 700-900 MB/s | Python binding |
 | sonic | Go | 400-600 MB/s | JIT-based |
-| **mojo-json** | **Mojo** | **450 MB/s** | **Current** |
-| **mojo-json** | **Mojo** | **2,000+ MB/s** | **Target (GPU)** |
+| **mojo-json** | **Mojo** | **636 MB/s** | **Phase 1 achieved** |
+| **mojo-json** | **Mojo** | **2,000+ MB/s** | **Target (Phase 2)** |
 
 ---
 
