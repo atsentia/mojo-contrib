@@ -79,3 +79,6 @@
 [submodule "serialization/mojo-tokenizer"]
 	path = serialization/mojo-tokenizer
 	url = https://github.com/atsentia/mojo-tokenizer.git
+[submodule "data-structures/mojo-vec"]
+	path = data-structures/mojo-vec
+	url = git@github.com:atsentia/mojo-vec.git
